@@ -1,0 +1,28 @@
+https://leetcode.com/problems/maximum-subarray/
+
+int maxSubArray(vector<int>& nums) {
+        
+        int n=nums.size();
+        
+        //very important to take maxSum as nums[0]
+        //for alll negative numbers this is useful for maxSum to compare the negative numbers before taking max
+        
+        //      -2      -2      -1     -3
+        //sum 0  -2,0   -2,0    -1,0   -3,0
+        //max -2   -2    -2      -1     -1
+        //answer is -1
+       long long int sum=0,maxSum=nums[0];
+        
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+            
+            
+            //why do we write these two lines in these order?
+            //because if first sum=0, then no comparison of the sum and maxSum
+            if(sum>maxSum)maxSum=sum;
+            if(sum<0)
+                sum=0;
+            
+        }
+        return maxSum;
+    }
